@@ -22,8 +22,8 @@ class  BillingPage extends BasePage{
         this.billingZipInput = page.locator('[placeholder="ZIP Code"]');
 
        //Billing Payment
-        this.billingAgreeCheckbox = page.getByText('I agree to the Legal');
-        this.PayButton = page.locator('#button#payButton');
+        this.billingAgreeCheckbox = page.getByText('I agree to the Legal').nth(2);
+        this.payButton = page.locator('button#payButton');
         this.backBillingButton = page.locator('.backbtn');
 
      }
@@ -62,7 +62,7 @@ class  BillingPage extends BasePage{
          await this.billingAgreeCheckbox.click();
      }
      async ClickBillingPayButton () {
-         await this.PayButton.click();
+         await this.payButton.click();
      }
 
      async fillBillingCardInformation(cardFullName, billingCardNum, billingExpiryMonth, billingExpiryYear, billingCvv) {
