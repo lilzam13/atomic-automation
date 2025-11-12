@@ -25,7 +25,6 @@ test.describe('Foreign Qualification Misc order', () => {
 
     test.afterEach(async ({page}) => {
       await page.waitForTimeout(5000);
-
     });
 
     test.skip('Foreign Qualification - should complete flow for LLC.', async() =>{
