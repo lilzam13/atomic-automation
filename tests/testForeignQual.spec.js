@@ -33,10 +33,9 @@ test.describe('Foreign Qualification Misc order', () => {
 */
     test.only('Foreign Qualification - should complete flow without Registered Agent service and selecting Company as RA.', async() =>{
       const user = userFactory('TX');
-      console.log(user.phone)
-      await companyInfPage.fillContactInformation(user.firstName, user.lastName, user.email, '2015551234');
+
+      await companyInfPage.fillContactInformation(user.firstName, user.lastName, user.email, user.phone);
       await companyInfPage.fillCompanyInformation('Corporation','Florida', 'Texas', 'FOREIGN KORP KOMPANY','INCORPORATED');
-      wa
       const summary = await orderSummary.getOrderSummaryStepOne();
       const totalStepOne = summary.stateFeeLabel + summary.goodStandingLabel + summary.processingFeeLabel + summary.virtualAddress;
       expect(totalStepOne).toBe(summary.stepOneTotal);
