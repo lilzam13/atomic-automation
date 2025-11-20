@@ -13,5 +13,5 @@ export const userFactory = (state = faker.location.state({ abbreviated: true})) 
     address: faker.location.streetAddress(),
     secondaryAddress: faker.location.secondaryAddress(),
     city: faker.location.city(),
-    state: faker.location.zipCode()
+    zipCode: faker.location.zipCode()
 });

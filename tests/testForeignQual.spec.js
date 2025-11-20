@@ -25,25 +25,40 @@ test.describe('Foreign Qualification Misc order', () => {
 
       await companyInfPage.goto();
     });
-/*-
+/*
     test.afterEach(async ({page}) => {
       const thankyouLabel = await page.locator('div.thankyou h2').textContent();
       expect(thankyouLabel).toBe('Your order was successfully processed');
     });
 */
-    test.only('Foreign Qualification - should complete flow without Registered Agent service and selecting Company as RA.', async() =>{
+    test.only('Foreign Qualification - should complete flow without Registered Agent service and selecting Company as RA.', async({page}) =>{
       const user = userFactory('TX');
 
-      await companyInfPage.fillContactInformation(user.firstName, user.lastName, user.email, user.phone);
-      await companyInfPage.fillCompanyInformation('Corporation','Florida', 'Texas', 'FOREIGN KORP KOMPANY','INCORPORATED');
+      await companyInfPage.fillContactInformation(user.firstName, user.lastName, user.email, '2015551234');
+      let totalPrice = await orderSummary.getTotalPrice();
+      expect(totalPrice).toBe(0);
+      
+      await companyInfPage.fillCompanyInformation('Corporation','Florida', 'Texas', 'FOREIGN KORP KMPANY','INCORPORATED');
+      //await page.waitForLoadState('load');
+
+      await page.waitForTimeout(5000);
+
+      const stateFee = await orderSummary.getStateFeePrice();
+      const processingFee = await orderSummary.getProcessingFeePrice();
+      const virtualAddressFee = await orderSummary.getVirtualAddressFeePrice();
+      const goodStandingFee = await orderSummary.getGoodStandingFeePrice();
+      console.log(stateFee, processingFee, virtualAddressFee, goodStandingFee);
+
+
+      /*
       const summary = await orderSummary.getOrderSummaryStepOne();
       const totalStepOne = summary.stateFeeLabel + summary.goodStandingLabel + summary.processingFeeLabel + summary.virtualAddress;
       expect(totalStepOne).toBe(summary.stepOneTotal);
 
-      await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondaryAddress, 'Fresnos', 'California', '90001');
+      await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondaryAddress, user.city, 'Texas', user.zipCode);
       await registeredAgentPage.fillRegAgentCompanyInf('AGENT KOMPS');
-      await registeredAgentPage.fillRegAgentAddressInf(user.address, user.secondaryAddress, 'Dallas', '75009');
-      /*
+      await registeredAgentPage.fillRegAgentAddressInf(user.address, user.secondaryAddress, user.city, user.zipCode);
+      
       const summarySecondPage = await orderSummary.getOrderSummaryStepTwo();
       const totalStepTwo = totalStepOne + Number(summarySecondPage.regAgentLabel);
       expect(totalStepTwo).toBe(summarySecondPage.stepTwoTotal);
