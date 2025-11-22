@@ -36,7 +36,7 @@ test.describe('Foreign Qualification Misc order', () => {
     expect(thankyouLabel).toBe('Your order was successfully processed');
   });
 
-  test.only('Foreign Qualification - should complete flow without Registered Agent service and selecting Company as RA.', async ({ page }) => {
+  test.only('Foreign Qualification - should complete flow without Registered Agent service and selecting Company as RA', async ({ page }) => {
     const user = userFactory('TX');
     const billing = billingFactory('TX');
     const member = membersFactory('TX');
