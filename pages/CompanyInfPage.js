@@ -18,7 +18,8 @@ class  CompanyInfPage extends BasePage{
         this.stateQualificationDropdown = page.locator('#compState');
         this.comNameInput = page.locator('#compName1');
         this.designatorDropdown = page.locator('#designator');
-     }
+        
+    }
 
      async goto (){
         await this.page.goto(PATHS.foreignQualification);
@@ -27,29 +28,35 @@ class  CompanyInfPage extends BasePage{
      async fillContactFirstName (contactFirstName) {
          await this.contactFirstNameInput.fill(contactFirstName);
      }
+
      async fillContactLastName (contactLastName) {
          await this.contactLastNameInput.fill(contactLastName);
      }
+
      async fillContactEmail (contactEmail) {
          await this.contactEmailInput.fill(contactEmail);
      }
+
      async fillContactPhone (contactPhone) {
          await this.contactPhoneInput.fill(contactPhone);
      }
 
-     
      async selectEntity (entity) {
          await this.entityDropdown.selectOption(entity);
      }
+
      async selectStateFormation (stateFormation) {
          await this.stateFormationDropdown.selectOption(stateFormation);
      }
+
      async selectStateQualification (stateQualification) {
          await this.stateQualificationDropdown.selectOption(stateQualification);
      }
+
      async fillCompName (compName) {
          await this.comNameInput.fill(compName);
      }
+
      async selectDesignator (designator) {
          await this.designatorDropdown.selectOption(designator);
      }
@@ -60,6 +67,7 @@ class  CompanyInfPage extends BasePage{
         await this.fillContactEmail(contactEmail);
         await this.fillContactPhone(contactPhone);
      }
+
      async fillCompanyInformation(entityType, entityState, compState, compName1, designator) {
         await this.selectEntity(entityType);
         await this.selectStateFormation(entityState);
