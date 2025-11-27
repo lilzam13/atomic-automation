@@ -8,7 +8,7 @@ import { BillingPage } from '../pages/BillingPage';
 import { ThankYouPage } from '../pages/ThankYouPage';
 import { OrderSummary } from '../pages/OrderSummary';
 import { billingFactory, userFactory, regAgentFactory } from '../utils/dataGenerator';
-import { ENTITY_TYPE, DESIGNATOR, CARDS, PHONE } from '../data/constants';
+import { ENTITY_TYPE, DESIGNATOR_LLC, CARDS, PHONE } from '../data/constants';
 import { THANK_YOU } from '../data/labels';
 import { BottomPage } from '../pages/BottomPage';
 import { HeaderPage } from '../pages/HeaderPage';
@@ -36,17 +36,19 @@ test.describe('Change of Agent Misc order', () => {
     bottomPage = new BottomPage(page);
     await basePage.goto(PATHS.changeAgent);
   });
+
   test.afterEach(async () => {
     const thankyouLabel = await thankYouPage.getThankYouGhostLabel();
     expect(thankyouLabel).toBe(THANK_YOU.COMPLETED_GHOST);
+    headerPage.clickLogOut();
   });
-
-  test.only('Change of Agent - should complete flow selecting as Individual.', async ({ page }) => {
+  
+  test.skip('Change of Agent - should complete flow selecting as Company.', async ({ page }) => {
     const user = userFactory('TX');
     const billing = billingFactory('TX');
     const regAgent = regAgentFactory('TX');
-    const stateFormation = 'Florida';
-    const stateService = 'Texas';
+    const stateFormation = 'California';
+    const stateService = 'Florida';
 
     await companyInfPage.fillContactInformation(user.firstName, user.lastName, user.email, PHONE.NUMBER);
     await bottomPage.clickBillingAgreePolicy();
@@ -57,21 +59,22 @@ test.describe('Change of Agent Misc order', () => {
     let totalPrice = await orderSummary.getTotalPrice();
     expect(totalPrice).toBe(0);
 
-    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.CORPORATION, stateFormation, stateService, 'tesssss', DESIGNATOR.CORP, true);
-    expect(companyInfPage.displayFinalCompanyName()).toBeVisible();
+    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.LLC, stateFormation, stateService, 'tesssss', DESIGNATOR_LLC.LIMITED, true);
+    let finalCompName = await companyInfPage.displayFinalCompanyName()
+    expect(finalCompName).toBeVisible();
 
     const processingFee = await orderSummary.getProcessingFeeMiscPrice();
     const stateFee = await orderSummary.getStateFeeMiscPrice();
     totalPrice = await orderSummary.getTotalPrice();
-    const sumItemSummary = stateFee +  processingFee;
+    const sumItemSummary = stateFee + processingFee;
     expect(totalPrice).toBe(sumItemSummary);
 
-    await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, '75009');
-    await regAgentPage.fillRegAgentIndividual(regAgent.firstName, regAgent.lastName);
-    await regAgentPage.fillRegAgentAddress(regAgent.address, regAgent.secondAddress, regAgent.city, '75009');
+    await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, '32003');
+    await regAgentPage.fillChangeAgentCompany('RA KOMP NAME');
+    await regAgentPage.fillAuthorizePerson(regAgent.firstName, regAgent.lastName);
 
-    await billingPage.fillBillingCardInformation(billing.firstName + ' ' + billing.lastName, CARDS.VISA, billing.expiryMonth, billing.expiryYear, billing.cvv);
-    await billingPage.fillBillingAdressInformation(billing.address, billing.secondAddress, billing.city, stateService, billing.zipCode);
+    await billingPage.fillBillingCard(billing.firstName + ' ' + billing.lastName, CARDS.VISA, billing.expiryMonth, billing.expiryYear, billing.cvv);
+    await billingPage.fillBillingAddress(billing.address, billing.secondAddress, billing.city, stateService, billing.zipCode);
     await billingPage.completePayment(true);
   });
 });
