@@ -4,13 +4,18 @@ export const ENTITY_TYPE = {
   NONPROFIT: 'Nonprofit',
 };
 
-export const DESIGNATOR = {
+export const DESIGNATOR_CORP = {
   INC: 'INC',
   LTD: 'LTD',
   COMPANY: 'COMPANY',
   CORP: 'CORP',
   INCORPORATED: 'INCORPORATED',
-  CORPORATION: 'CORPORATION'
+  CORPORATION: 'CORPORATION',
+};
+
+export const DESIGNATOR_LLC = {
+  LIMITED: 'LIMITED LIABILITY COMPANY',
+  LLC: 'LLC'
 };
 
 export const CARDS = {
@@ -19,4 +24,8 @@ export const CARDS = {
   AMEX: '370000000000002	',
   DISCOVER: '6011601160116611	',
   DINNER: '305636006666333344	',
+};
+
+export const PHONE = {
+  NUMBER: '2015551234'
 };

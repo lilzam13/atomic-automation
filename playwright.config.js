@@ -29,30 +29,36 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    headless: process.env.HEADLESS ===  "true" ? true : false,
+    headless: process.env.HEADLESS === "true" ? true : false,
     /* Base URL to use in actions like `await page.goto('')`. */
     baseURL: process.env.BASE_URL,
-    ignoreHTTPSErrors:true,
+    ignoreHTTPSErrors: true,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    
+
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        browserName: 'chromium',
+        viewport: null,
+        launchOptions: {
+          args: ['--start-maximized'], 
+        },
+      },
     },
 
     //{
-      //name: 'firefox',
-     // use: { ...devices['Desktop Firefox'] },
-   // },
+    //name: 'firefox',
+    // use: { ...devices['Desktop Firefox'] },
+    // },
 
 
-//    {
-  //    name: 'webkit',
+    //    {
+    //    name: 'webkit',
     //  use: { ...devices['Desktop Safari'] },
     //},
 

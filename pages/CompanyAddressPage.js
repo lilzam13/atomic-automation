@@ -51,7 +51,6 @@ class  CompanyAddressPage extends BasePage{
         await this.fillCity(contactCity);
         await this.selectState(contactState);
         await this.fillZipCode(contactZip);
-        await this.clickNextStepOne();
      }
      
 }

@@ -1,8 +1,8 @@
 const { PATHS } = require("../data/paths");
 const { BasePage } = require("./BasePage");
 
-class  CompanyInfPage extends BasePage{
-     constructor(page) {
+class CompanyInfPage extends BasePage {
+    constructor(page) {
         super(page);
         this.page = page;
 
@@ -16,65 +16,77 @@ class  CompanyInfPage extends BasePage{
         this.entityDropdown = page.locator('#entityType');
         this.stateFormationDropdown = page.locator('#entityState');
         this.stateQualificationDropdown = page.locator('#compState');
+
+        this.stateServiceDropdown = page.locator('#serviceState');
         this.comNameInput = page.locator('#compName1');
         this.designatorDropdown = page.locator('#designator');
-        
+
+        this.finalCompNameLabel = page.locator('.final-name');
+
+    }
+    async fillContactFirstName(contactFirstName) {
+        await this.contactFirstNameInput.fill(contactFirstName);
     }
 
-     async goto (){
-        await this.page.goto(PATHS.foreignQualification);
-     }
+    async fillContactLastName(contactLastName) {
+        await this.contactLastNameInput.fill(contactLastName);
+    }
 
-     async fillContactFirstName (contactFirstName) {
-         await this.contactFirstNameInput.fill(contactFirstName);
-     }
+    async fillContactEmail(contactEmail) {
+        await this.contactEmailInput.fill(contactEmail);
+    }
 
-     async fillContactLastName (contactLastName) {
-         await this.contactLastNameInput.fill(contactLastName);
-     }
+    async fillContactPhone(contactPhone) {
+        await this.contactPhoneInput.fill(contactPhone);
+    }
 
-     async fillContactEmail (contactEmail) {
-         await this.contactEmailInput.fill(contactEmail);
-     }
+    async selectEntity(entity) {
+        await this.entityDropdown.selectOption(entity);
+    }
 
-     async fillContactPhone (contactPhone) {
-         await this.contactPhoneInput.fill(contactPhone);
-     }
+    async selectStateFormation(stateFormation) {
+        await this.stateFormationDropdown.selectOption(stateFormation);
+    }
 
-     async selectEntity (entity) {
-         await this.entityDropdown.selectOption(entity);
-     }
+    async selectStateQualification(stateQualification) {
+        await this.stateQualificationDropdown.selectOption(stateQualification);
+    }
 
-     async selectStateFormation (stateFormation) {
-         await this.stateFormationDropdown.selectOption(stateFormation);
-     }
+    async selectStateService(stateService) {
+        await this.stateServiceDropdown.selectOption(stateService);
+    }
 
-     async selectStateQualification (stateQualification) {
-         await this.stateQualificationDropdown.selectOption(stateQualification);
-     }
+    async fillCompName(compName) {
+        await this.comNameInput.fill(compName);
+    }
 
-     async fillCompName (compName) {
-         await this.comNameInput.fill(compName);
-     }
+    async selectDesignator(designator) {
+        await this.designatorDropdown.selectOption(designator);
+    }
 
-     async selectDesignator (designator) {
-         await this.designatorDropdown.selectOption(designator);
-     }
+    async displayFinalCompanyName() {
+        return this.finalCompNameLabel;
+    }
 
-     async fillContactInformation(contactFirstName, contactLastName, contactEmail, contactPhone) {
+    async fillContactInformation(contactFirstName, contactLastName, contactEmail, contactPhone) {
         await this.fillContactFirstName(contactFirstName);
         await this.fillContactLastName(contactLastName);
         await this.fillContactEmail(contactEmail);
         await this.fillContactPhone(contactPhone);
-     }
+    }
 
-     async fillCompanyInformation(entityType, entityState, compState, compName1, designator) {
+    async fillCompanyInformation(entityType, entityState, compState, compName1, designator, ghostFlow = true) {
         await this.selectEntity(entityType);
         await this.selectStateFormation(entityState);
-        await this.selectStateQualification(compState);
+        if (ghostFlow) {
+            await this.selectStateService(compState);
+        }
+        else {
+            await this.selectStateQualification(compState);
+        }
         await this.fillCompName(compName1);
         await this.selectDesignator(designator);
-     }
+    }
 }
 
 module.exports = { CompanyInfPage };
