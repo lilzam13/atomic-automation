@@ -39,6 +39,7 @@ class RegisteredAgentPage extends BasePage {
     async selectRegAgentNo() {
         await this.regAgentNoRadio.click();
     }
+    
     async selectRegAgentCompanyOpt() {
         await this.regAgentCompRadio.click();
     }
@@ -54,33 +55,39 @@ class RegisteredAgentPage extends BasePage {
     async fillRaFirstName(agentFirstName) {
         await this.raFirstNameInput.fill(agentFirstName);
     }
+
     async fillRaLastName(agentLastName) {
         await this.raLastNameInput.fill(agentLastName);
-
     }
+
     async fillRaCompanyName(agentComp) {
         await this.regAgentCompNameInput.fill(agentComp);
     }
+
     async fillAuthorizedFirstName(authorizedFirstName) {
         await this.authorizedFirstNameInput.fill(authorizedFirstName);
     }
+
     async fillAuthorizedLastName(authorizedLastName) {
         await this.authorizedLastNameInput.fill(authorizedLastName);
     }
 
-
     async fillRaStreetOne(agentStreet1) {
         await this.raStretOneInput.fill(agentStreet1);
     }
+
     async fillRaStreetTwo(agentStreet2) {
         await this.raStretTwoInput.fill(agentStreet2);
     }
+
     async fillRaCity(agentCity) {
         await this.raCityInput.fill(agentCity);
     }
+
     async selectRaState(agentState) {
         await this.raStateDropdown.selectOption(agentState);
     }
+
     async fillRaZipCode(agentZip) {
         await this.raZipcodeInput.fill(agentZip);
     }
@@ -105,6 +112,7 @@ class RegisteredAgentPage extends BasePage {
         await this.selectRegAgentCompanyOpt();
         await this.fillRaCompanyName(agentComp);
     }
+
     async fillChangeAgentCompany(agentComp) {
         await this.checkChangeAgentCompany();
         await this.fillRaCompanyName(agentComp);

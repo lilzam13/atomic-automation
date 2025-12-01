@@ -11,9 +11,9 @@ class BasePage {
     return element.waitFor({ state: 'visible' });
   }
 
-  async goto (path){
-        await this.page.goto(path);
-     }
+  async goto(path) {
+    await this.page.goto(path);
+  }
 }
 
 module.exports = { BasePage };
