@@ -15,6 +15,12 @@ class  CompanyAddressPage extends BasePage{
         this.cityInput = page.locator('#contactCity');
         this.stateDropdown = page.locator('#contactState');
         this.zipCodeInput = page.locator('#contactZip');
+
+        //Company address(dashboard)
+        this.streetCompInput = page.locator('#compStreet1');
+        this.cityCompInput = page.locator('#compCity');
+        this.stateCompDropdown = page.locator('#compStateVisible');
+        this.zipCompInput = page.locator('#compZip');
         
         //Next step 1
         this.nextStepOnebutton = page.locator('button[type="submit"]');
@@ -22,10 +28,11 @@ class  CompanyAddressPage extends BasePage{
         
      }
 
+     //Methods for contact address
      async selectVirtualAddressNo () {
          await this.virtualAddressNo.click();
      }
-
+    
      async fillStreetOne (contactStreet1) {
          await this.streetOneInput.fill(contactStreet1);
      }
@@ -41,6 +48,24 @@ class  CompanyAddressPage extends BasePage{
      async fillZipCode (contactZip) {
          await this.zipCodeInput.fill(contactZip);
      }
+
+     //Methods for company address
+     async fillStreetComp (compStreet1) {
+         await this.streetCompInput.fill(compStreet1);
+     }
+   
+     async fillCityComp (compCity) {
+         await this.cityCompInput.fill(compCity);
+     }
+
+     async selectStateComp (compState) {
+         await this.stateCompDropdown.selectOption(compState);
+     }
+
+     async fillZipComp (compZip) {
+         await this.zipCompInput.fill(compZip);
+     }
+
      async clickNextStepOne () {
          await this.nextStepOnebutton.click();
      }
@@ -51,6 +76,13 @@ class  CompanyAddressPage extends BasePage{
         await this.fillCity(contactCity);
         await this.selectState(contactState);
         await this.fillZipCode(contactZip);
+     }
+
+     async fillCompanyAddressForm(compStreet1, compCity, compState, compZip) {
+        await this.fillStreetComp(compStreet1);
+        await this.fillCityComp(compCity);
+        await this.selectStateComp(compState);
+        await this.fillZipComp(compZip);
      }
      
 }

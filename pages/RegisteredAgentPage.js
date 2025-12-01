@@ -15,8 +15,8 @@ class RegisteredAgentPage extends BasePage {
         this.regAgentCompRadio = page.locator('#act-company');
 
         //Change of Agent
-        this.changeAgentCompRadio = page.getByLabel('Company').first();
-        this.changeAgentUseAddress = page.locator('#ra_checkbox_wrapper');
+        this.changeAgentCompRadio = page.locator('[name="agentFromStatus"][value="0"]');
+        this.changeAgentUseAddress = page.locator('#changeAgentUseAddress');
 
         //Individual
         this.raFirstNameInput = page.locator('#agentFirstName');
