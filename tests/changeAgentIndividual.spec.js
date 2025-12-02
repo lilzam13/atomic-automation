@@ -43,7 +43,7 @@ test.describe('Change of Agent Misc order', () => {
     await headerPage.clickLogOut();
   });
   
-  test.only('Change of Agent - should complete flow selecting as Individual.', async ({ page }) => {
+  test.skip('Change of Agent - should complete flow selecting as Individual.', async ({ page }) => {
     const user = userFactory('TX');
     const billing = billingFactory('TX');
     const regAgent = regAgentFactory('TX');

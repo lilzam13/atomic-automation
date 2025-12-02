@@ -43,10 +43,10 @@ test.describe('Change of Agent Misc order', () => {
     headerPage.clickLogOut();
   });
   
-  test.skip('Change of Agent - should complete flow selecting as Company.', async ({ page }) => {
-    const user = userFactory('TX');
-    const billing = billingFactory('TX');
-    const regAgent = regAgentFactory('TX');
+  test.only('Change of Agent - should complete flow selecting as Company.', async ({ page }) => {
+    const user = userFactory('FL');
+    const billing = billingFactory('FL');
+    const regAgent = regAgentFactory('FL');
     const stateFormation = 'California';
     const stateService = 'Florida';
 
@@ -71,6 +71,7 @@ test.describe('Change of Agent Misc order', () => {
 
     await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, '32003');
     await regAgentPage.fillChangeAgentCompany('RA KOMP NAME');
+    await regAgentPage.checkchangeAgentUseAddress();
     await regAgentPage.fillAuthorizePerson(regAgent.firstName, regAgent.lastName);
 
     await billingPage.fillBillingCard(billing.firstName + ' ' + billing.lastName, CARDS.VISA, billing.expiryMonth, billing.expiryYear, billing.cvv);

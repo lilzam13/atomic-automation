@@ -15,8 +15,8 @@ class RegisteredAgentPage extends BasePage {
         this.regAgentCompRadio = page.locator('#act-company');
 
         //Change of Agent
-        this.changeAgentCompRadio = page.locator('[name="agentFromStatus"][value="0"]');
-        this.changeAgentUseAddress = page.locator('#changeAgentUseAddress');
+        this.changeAgentCompRadio = page.getByText('The registered agent will be a company.');
+        this.changeAgentUseAddress = page.locator('#ra_option .custom-checkbox');
 
         //Individual
         this.raFirstNameInput = page.locator('#agentFirstName');
@@ -99,10 +99,6 @@ class RegisteredAgentPage extends BasePage {
         await this.fillRaZipCode(agentZip);
     }
 
-    async checkAgentTypeIndividual() {
-        await this.selectRegAgentNo();
-    }
-
     async fillRegAgentIndividual(agentFirstName, agentLastName) {
         await this.fillRaFirstName(agentFirstName);
         await this.fillRaLastName(agentLastName);
@@ -122,7 +118,6 @@ class RegisteredAgentPage extends BasePage {
         await this.fillAuthorizedFirstName(authorizedFirstName);
         await this.fillAuthorizedLastName(authorizedLastName);
     }
-
 }
 
 module.exports = { RegisteredAgentPage };
