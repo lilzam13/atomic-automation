@@ -3,17 +3,23 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test_chrome" : "NODE_ENV=development npx playwright test --project=chromium",
+    "test_edge" : "NODE_ENV=development npx playwright test --project=Microsoft Edge",
+    "test_firefox" : "NODE_ENV=development npx playwright test --project=firefox",
+    "test_safari" : "NODE_ENV=development npx playwright test --project=webkit",
+    "test_all_browsers": "NODE_ENV=development npx playwright test --project=chromium,"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@faker-js/faker": "^10.1.0",
-    "@playwright/test": "^1.56.1",
-    "@types/node": "^24.10.0"
+    "@faker-js/faker": "10.1.0",
+    "@playwright/test": "1.56.1",
+    "@types/node": "24.10.0"
   },
   "dependencies": {
-    "dotenv": "^17.2.3"
+    "dotenv": "17.2.3"
   }
 }
