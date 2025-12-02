@@ -12,6 +12,10 @@ class HeaderPage extends BasePage {
      getLogoutLink () {
          return this.logoutLink;
      }
+
+     async clickLogOut() {
+        await this.logoutLink.click();
+    }
 }
 
 module.exports = { HeaderPage };
