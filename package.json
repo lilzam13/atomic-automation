@@ -8,7 +8,7 @@
     "test_edge" : "NODE_ENV=development npx playwright test --project=Microsoft Edge",
     "test_firefox" : "NODE_ENV=development npx playwright test --project=firefox",
     "test_safari" : "NODE_ENV=development npx playwright test --project=webkit",
-    "test_all_browsers": "NODE_ENV=development npx playwright test --project=chromium,"
+    "test_all_browsers": "NODE_ENV=development npx playwright test --project=chromium --project=Microsoft Edge --project=firefox --project=webkit"
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,40 @@
+# =====================================================================
+# 📌 Commit Title (Conventional Commit Style)
+# Format: <type>: <short, imperative summary>
+# Example: "feat: add validations for foreign qualification"
+# =====================================================================
+
+<type>: <summary>
+
+# Allowed <type> values (Conventional Commits)
+# feat     – New features, new test flows, new Page Objects
+# fix      – Bug fixes (locators, selectors, timing issues, flaky tests)
+# refactor – Structural changes without affecting behavior
+# test     – Test-only changes (new tests, updates, removals)
+# chore    – Maintenance tasks (cleanup, formatting, comments)
+# docs     – Documentation updates (README, guides, notes)
+# config   – Configuration changes (playwright.config, env, scripts)
+# build    – Dependency updates or build-related changes
+
+# =====================================================================
+## 📝 Description (What & Why)
+# Explain what was changed and why.
+# Example:
+# - Updated CompanyInfoPage locators due to DOM changes.
+# =====================================================================
+
+## 🔍 Changes Made (Check what applies)
+- [ ] 🧪 New test cases
+- [ ] 🔧 Updated Playwright configuration
+- [ ] 🧰 Refactored POM structure
+- [ ] 🐛 Fixed failing tests or locators
+- [ ] 📝 Updated documentation
+- [ ] 📦 Updated dependencies
+- [ ] Other: ___________________________
+
+# =====================================================================
+## 💬 Additional Notes
+# Add context for reviewers.
+# Example:
+# - Affects misc order flow only.
+# =====================================================================
