@@ -15,7 +15,9 @@ class RegisteredAgentPage extends BasePage {
         this.regAgentCompRadio = page.locator('#act-company');
 
         //Change of Agent
-        this.changeAgentCompRadio = page.getByText('The registered agent will be a company.');
+        this.changeAgentCompRadio = page.locator('section:nth-child(3) .custom-radio:nth-child(2)');
+        this.checkbox = page.locator('#ra_checkbox_wrapper label'),
+        
         this.changeAgentUseAddress = page.locator('#ra_option .custom-checkbox');
 
         //Individual
@@ -111,6 +113,7 @@ class RegisteredAgentPage extends BasePage {
 
     async fillChangeAgentCompany(agentComp) {
         await this.checkChangeAgentCompany();
+        await this.checkbox.click();
         await this.fillRaCompanyName(agentComp);
     }
 
