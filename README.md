@@ -1,6 +1,6 @@
 # Bizee – Automation Test Repository
 
-This project contains the end-to-end automated test suite for **Bizee** website. The test suite covers the Main Order flow, Miscellaneous Orders, authentication (login), and key processes within the user dashboard.
+This project contains the end-to-end automated test suite for **Bizee** website. The test suite covers the Main Order flow, Miscellaneous Orders, authentication (login), and key processes within the customer dashboard.
 It is built using Playwright and structured with the Page Object Model (POM) to ensure scalability, maintainability, and reliable test execution.
 
 ## 🚀 Getting started
@@ -23,12 +23,12 @@ Open the terminal: Warp
 ```git clone git@github.com:lilzam13/atomic-automation.git```
 ```cd atomic-automation```
 ```npm install```
-Create a .env file
+Create a .env.development file
 
 ## 🤝 Access & Credentials
 Credentials and environment variables are not committed for security reasons.
 Please contact the QA team to request:
- - .env file
+ - .env.development file
  - Staging credentials
 
 ## ▶ Running Tests
@@ -39,6 +39,9 @@ Please contact the QA team to request:
 | Firefox           | `npm run test_firefox` |
 | Safari (WebKit)   | `npm run test_safari`  |
 | Run all browsers  | `npm run test_all_browsers`|
+
+### ▶ Open the test results reporter
+```npm run open_test_report```
 
 ## 📁 Project Structure
 atomic-automation/
