@@ -42,8 +42,8 @@ test.describe('Change of Agent Misc order', () => {
     expect(thankyouLabel).toBe(THANK_YOU.COMPLETED_GHOST);
     await headerPage.clickLogOut();
   });
-  
-  test.only('Change of Agent - should complete flow selecting as Individual.', async ({ page }) => {
+
+  test('Change of Agent - should complete flow selecting as Individual.', async ({ page }) => {
     const user = userFactory('TX');
     const billing = billingFactory('TX');
     const regAgent = regAgentFactory('TX');

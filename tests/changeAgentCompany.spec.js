@@ -40,10 +40,10 @@ test.describe('Change of Agent Misc order', () => {
   test.afterEach(async () => {
     const thankyouLabel = await thankYouPage.getThankYouGhostLabel();
     expect(thankyouLabel).toBe(THANK_YOU.COMPLETED_GHOST);
-    headerPage.clickLogOut();
+    await headerPage.clickLogOut();
   });
-  
-  test.skip('Change of Agent - should complete flow selecting as Company.', async ({ page }) => {
+
+  test('Change of Agent - should complete flow selecting as Company.', async ({ page }) => {
     const user = userFactory('TX');
     const billing = billingFactory('TX');
     const regAgent = regAgentFactory('TX');
@@ -70,6 +70,7 @@ test.describe('Change of Agent Misc order', () => {
     expect(totalPrice).toBe(sumItemSummary);
 
     await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, '32003');
+    await regAgentPage.checkUseAddress();
     await regAgentPage.fillChangeAgentCompany('RA KOMP NAME');
     await regAgentPage.fillAuthorizePerson(regAgent.firstName, regAgent.lastName);
 
@@ -78,6 +79,3 @@ test.describe('Change of Agent Misc order', () => {
     await billingPage.completePayment(true);
   });
 });
-
-
-
