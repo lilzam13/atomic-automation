@@ -29,3 +29,9 @@ export const CARDS = {
 export const PHONE = {
   NUMBER: '2015551234'
 };
+
+export const TAXES = {
+  TAXPAYER: '88899977708',
+  WEBFILE: 'gh888888',
+  TOTAL_REV: '1000'
+};

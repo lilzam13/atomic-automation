@@ -17,19 +17,27 @@ class AnnualReportPage extends BasePage {
     }
 
     async fillDateFormation(dateFormation) {
-        await this.dateFormationInput.fill(dateFormation);
+        await this.dateFormationInput.click();
+        await this.dateFormationInput.type(dateFormation, { delay: 50 });
     }
 
     async fillTaxpayer(taxpayer) {
-        await this.taxPayerInput.fill(taxpayer);
+        await this.taxPayerInput.click();
+        await this.taxPayerInput.type(taxpayer, { delay: 50 });
+        await this.taxPayerInput.press('Tab');
     }
 
+
     async fillWebfile(webfile) {
-        await this.webfileInput.fill(webfile);
+        await this.webfileInput.click();
+        await this.webfileInput.type(webfile, { delay: 50 });
+        await this.webfileInput.press('Tab');
     }
 
     async fillTotalRevenue(totalRevenue) {
-        await this.totalRevenueInput.fill(totalRevenue);
+        await this.totalRevenueInput.click();
+        await this.totalRevenueInput.fill(totalRevenue, { delay: 50 });
+        await this.totalRevenueInput.press('Tab');
     }
 
     async fillTaxpayerForm(taxpayer, webfile) {

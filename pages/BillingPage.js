@@ -17,7 +17,7 @@ class BillingPage extends BasePage {
         this.billingCountryDropdown = page.locator('#country');
         this.billingStreet1Input = page.locator('[placeholder="Street Address"]');
         this.billingStreet2Input = page.locator('[placeholder="Address (Cont)"]');
-        this.billingCityInput = page.locator('[placeholder="City"]');
+        this.billingCityInput = page.locator('input[name="card[address][city]"]');
         this.billingStateDropdown = page.locator('[name="card[address][state]"]');
         this.billingZipInput = page.locator('[placeholder="ZIP Code"]');
 

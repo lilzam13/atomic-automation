@@ -10,21 +10,17 @@ class  CompanyAddressPage extends BasePage{
         this.virtualAddressNo = page.locator('[for="virtual-address-required-no"]');
 
         //Contact address
-        this.streetOneInput = page.locator('#contactStreet1');
-        this.streetTwoInput = page.locator('#contactStreet2');
-        this.cityInput = page.locator('#contactCity');
-        this.stateDropdown = page.locator('#contactState');
-        this.zipCodeInput = page.locator('#contactZip');
+        this.contactStreetInput = page.locator('#contactStreet1');
+        this.contactStreetTwoInput = page.locator('#contactStreet2');
+        this.contactCityInput = page.locator('#contactCity');
+        this.contactStateDropdown = page.locator('#contactState');
+        this.contactZipCodeInput = page.locator('#contactZip');
 
         //Company address(dashboard)
-        this.streetCompInput = page.locator('#compStreet1');
-        this.cityCompInput = page.locator('#compCity');
-        this.stateCompDropdown = page.locator('#compStateVisible');
-        this.zipCompInput = page.locator('#compZip');
-        
-        //Next step 1
-        this.nextStepOnebutton = page.locator('button[type="submit"]');
-        this.backStepOneButton = page.locator('.backbtn');
+        this.streetInput = page.locator('#compStreet1');
+        this.cityInput = page.locator('#compCity');
+        this.stateSelect = page.locator('#compStateVisible');
+        this.zipInput = page.locator('#compZip')
         
      }
 
@@ -33,57 +29,65 @@ class  CompanyAddressPage extends BasePage{
          await this.virtualAddressNo.click();
      }
     
-     async fillStreetOne (contactStreet1) {
-         await this.streetOneInput.fill(contactStreet1);
-     }
-     async fillStreetTwo (contactStreet2) {
-         await this.streetTwoInput.fill(contactStreet2);
-     }
-     async fillCity (contactCity) {
-         await this.cityInput.fill(contactCity);
-     }
-     async selectState (contactState) {
-         await this.stateDropdown.selectOption(contactState);
-     }
-     async fillZipCode (contactZip) {
-         await this.zipCodeInput.fill(contactZip);
+     async fillContactStreet(contactStreet1) {
+         await this.contactStreetInput.fill(contactStreet1);
      }
 
-     //Methods for company address
-     async fillStreetComp (compStreet1) {
-         await this.streetCompInput.fill(compStreet1);
+     async fillContactStreetTwo (contactStreet2) {
+         await this.contactStreetTwoInput.fill(contactStreet2);
+     }
+
+     async fillContactCity (contactCity) {
+         await this.contactCityInput.fill(contactCity);
+     }
+
+     async selectContactState (contactState) {
+         await this.contactStateDropdown.selectOption(contactState);
+     }
+
+     async fillContactZipCode (contactZip) {
+         await this.contactZipCodeInput.fill(contactZip);
+     }
+
+     //Company address(dashboard)
+     async fillStreet(street) {
+         await this.streetInput.click();
+         await this.streetInput.fill(street, { delay: 50 });
+         await this.streetInput.press('Tab');
      }
    
-     async fillCityComp (compCity) {
-         await this.cityCompInput.fill(compCity);
+     async fillCity(city) {
+         await this.cityInput.click();
+         await this.cityInput.fill(city, { delay: 50 });
+         await this.cityInput.press('Tab');
      }
 
-     async selectStateComp (compState) {
-         await this.stateCompDropdown.selectOption(compState);
+     async selectState(state) {
+         await this.stateSelect.click();
+         await this.stateSelect.selectOption(state, { delay: 50 });
+         await this.stateSelect.press('Tab');
      }
 
-     async fillZipComp (compZip) {
-         await this.zipCompInput.fill(compZip);
-     }
-
-     async clickNextStepOne () {
-         await this.nextStepOnebutton.click();
+     async fillZip(zip) {
+         await this.zipInput.click();
+         await this.zipInput.fill(zip, { delay: 50 });
+         await this.zipInput.press('Tab');
      }
 
      async fillCompanyAddressInformation(contactStreet1, contactStreet2, contactCity, contactState, contactZip) {
-        await this.fillStreetOne(contactStreet1);
-        await this.fillStreetTwo(contactStreet2);
-        await this.fillCity(contactCity);
-        await this.selectState(contactState);
-        await this.fillZipCode(contactZip);
+        await this.fillContactStreet(contactStreet1);
+        await this.fillContactStreetTwo(contactStreet2);
+        await this.fillContactCity(contactCity);
+        await this.selectContactState(contactState);
+        await this.fillContactZipCode(contactZip);
      }
 
-     async fillCompanyAddressForm(compStreet1, compCity, compState, compZip) {
-        await this.fillStreetComp(compStreet1);
-        await this.fillCityComp(compCity);
-        await this.selectStateComp(compState);
-        await this.fillZipComp(compZip);
-     }
+     async fillCompanyAddressForm(street, city, state, zip) {
+        await this.fillStreet(street);
+        await this.fillCity(city);
+        await this.selectState(state);
+        await this.fillZip(zip);
+    }
      
 }
 
