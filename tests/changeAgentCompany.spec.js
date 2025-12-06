@@ -44,9 +44,9 @@ test.describe('Change of Agent Misc order', () => {
   });
 
   test('Change of Agent - should complete flow selecting as Company.', async ({ page }) => {
-    const user = userFactory('TX');
-    const billing = billingFactory('TX');
-    const regAgent = regAgentFactory('TX');
+    const user = userFactory('FL');
+    const billing = billingFactory('FL');
+    const regAgent = regAgentFactory('FL');
     const stateFormation = 'California';
     const stateService = 'Florida';
 
@@ -59,7 +59,7 @@ test.describe('Change of Agent Misc order', () => {
     let totalPrice = await orderSummary.getTotalPrice();
     expect(totalPrice).toBe(0);
 
-    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.LLC, stateFormation, stateService, 'tesssss', DESIGNATOR_LLC.LIMITED, true);
+    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.LLC, stateFormation, stateService, 'COA KOMPANY TESTS', DESIGNATOR_LLC.LIMITED, true);
     let finalCompName = await companyInfPage.displayFinalCompanyName()
     expect(finalCompName).toBeVisible();
 
@@ -69,7 +69,7 @@ test.describe('Change of Agent Misc order', () => {
     const sumItemSummary = stateFee + processingFee;
     expect(totalPrice).toBe(sumItemSummary);
 
-    await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, '32003');
+    await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, user.zipCode);
     await regAgentPage.checkUseAddress();
     await regAgentPage.fillChangeAgentCompany('RA KOMP NAME');
     await regAgentPage.fillAuthorizePerson(regAgent.firstName, regAgent.lastName);

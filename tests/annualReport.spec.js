@@ -47,7 +47,7 @@ test.describe('Annual report Misc order', () => {
     await headerPage.clickLogOut();
   });
 
-  test.only('Annual Report - should complete flow selecting "Texas" as state of service.', async ({ page }) => {
+  test('Annual Report - should complete flow selecting "Texas" as state of service.', async ({ page }) => {
     const user = userFactory('TX');
     const billing = billingFactory('TX');
     const regAgent = regAgentFactory('TX');
@@ -62,26 +62,25 @@ test.describe('Annual report Misc order', () => {
     const logoutLink = headerPage.getLogoutLink();
     await expect(logoutLink).toBeVisible();
 
-    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.CORPORATION, stateFormation, stateService, 'tesssss', DESIGNATOR_CORP.CORPORATION, true);
+    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.CORPORATION, stateFormation, stateService, 'Annual report for tx', DESIGNATOR_CORP.CORPORATION, true);
     let finalCompName = await companyInfPage.displayFinalCompanyName();
     expect(finalCompName).toBeVisible();
 
+    await companyAddressPage.fillCompanyAddressForm(user.address, user.city, stateService, user.zipCode);
     await companyAddressPage.fillStreet(user.address);
     await companyAddressPage.fillCity(user.city);
-    await companyAddressPage.selectState(stateService);
-    await companyAddressPage.fillZip('75009');
 
     await annualReportPage.fillDateFormation('05072024');
 
     await regAgentPage.fillRegAgentIndividual(regAgent.firstName, regAgent.lastName);
-    await regAgentPage.fillRegAgentAddress(regAgent.address, regAgent.secondAddress, regAgent.city, '75009');
+    await regAgentPage.fillRegAgentAddress(regAgent.address, regAgent.secondAddress, regAgent.city, regAgent.zipCode);
 
     await memberPage.fillMembersInformation(member.firstName, member.lastName, member.address, member.secondAddress, member.city, stateService, member.zipCode);
 
     await annualReportPage.fillTaxpayerForm(TAXES.TAXPAYER, TAXES.WEBFILE);
     await annualReportPage.fillTotalRevenue(TAXES.TOTAL_REV);
 
-    await billingPage.fillBillingCard(billing.firstName + ' ' + billing.lastName, CARDS.VISA, billing.expiryMonth, billing.expiryYear, billing.cvv);
+    await billingPage.fillBillingCard(billing.firstName + ' ' + billing.lastName, CARDS.DISCOVER, billing.expiryMonth, billing.expiryYear, billing.cvv);
     await billingPage.fillBillingAddress(billing.address, billing.secondAddress, billing.city, stateService, billing.zipCode);
     await billingPage.completePayment(true);
   });

@@ -44,11 +44,11 @@ test.describe('Change of Agent Misc order', () => {
   });
 
   test('Change of Agent - should complete flow selecting as Individual.', async ({ page }) => {
-    const user = userFactory('TX');
-    const billing = billingFactory('TX');
-    const regAgent = regAgentFactory('TX');
+    const user = userFactory('CA');
+    const billing = billingFactory('CA');
+    const regAgent = regAgentFactory('CA');
     const stateFormation = 'Florida';
-    const stateService = 'Texas';
+    const stateService = 'California';
 
     await companyInfPage.fillContactInformation(user.firstName, user.lastName, user.email, PHONE.NUMBER);
     await bottomPage.clickBillingAgreePolicy();
@@ -59,7 +59,7 @@ test.describe('Change of Agent Misc order', () => {
     let totalPrice = await orderSummary.getTotalPrice();
     expect(totalPrice).toBe(0);
 
-    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.CORPORATION, stateFormation, stateService, 'tesssss', DESIGNATOR_CORP.CORPORATION, true);
+    await companyInfPage.fillCompanyInformation(ENTITY_TYPE.CORPORATION, stateFormation, stateService, 'COA INDIVIDUAL TEST', DESIGNATOR_CORP.CORPORATION, true);
     let finalCompName = await companyInfPage.displayFinalCompanyName()
     expect(finalCompName).toBeVisible();
 
@@ -69,9 +69,9 @@ test.describe('Change of Agent Misc order', () => {
     const sumItemSummary = stateFee + processingFee;
     expect(totalPrice).toBe(sumItemSummary);
 
-    await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, '75009');
+    await companyAddressPage.fillCompanyAddressInformation(user.address, user.secondAddress, user.city, stateService, user.zipCode);
     await regAgentPage.fillRegAgentIndividual(regAgent.firstName, regAgent.lastName);
-    await regAgentPage.fillRegAgentAddress(regAgent.address, regAgent.secondAddress, regAgent.city, '75009');
+    await regAgentPage.fillRegAgentAddress(regAgent.address, regAgent.secondAddress, regAgent.city, regAgent.zipCode);
 
     await billingPage.fillBillingCard(billing.firstName + ' ' + billing.lastName, CARDS.VISA, billing.expiryMonth, billing.expiryYear, billing.cvv);
     await billingPage.fillBillingAddress(billing.address, billing.secondAddress, billing.city, stateService, billing.zipCode);
